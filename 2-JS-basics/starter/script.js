@@ -137,6 +137,144 @@ if(civilStatus === 'married') {
 */
 
 /************************************
-    Boolean logic
+    The ternary operator and Switch Statements
 */
 
+var firstName = 'John';
+var age = 16;
+
+// Ternary operator
+age >= 18 ? console.log(firstName + ' drinks bear') : console.log(firstName + ' drinks juice');
+
+var drink = age >= 18 ? 'bear' : 'juice';
+console.log(drink);
+
+// Switch statement
+
+var job = 'teacher';
+switch(job) {
+    case 'teacher':
+    case 'instructor':
+        console.log(firstName + ' teaches kids how to code');
+        break;
+    case 'driver':
+        console.log(firstName + ' drives a car');
+        break;
+    default:
+        console.log(firstName + ' unemployed');
+}
+
+age = 10;
+switch (true) {
+    case age < 13:
+        console.log(firstName + ' is a boy');
+        break;
+    case age >= 13 && age < 20:
+        console.log(firstName + ' is a teenager');
+        break;
+    default:
+        console.log(firstName + ' is a man');
+}
+
+/************************************
+    Truthy and Falsy values and equality operators
+*/
+
+// value can be falsy if used for if/else evaluation
+// falsy values: undefined, null, 0, '', NaN (not a number)
+// truthy values: NOT falsy values
+
+var height = 23; 
+
+if(height || height === 0) { // because 0 is a falsy value here
+    console.log('variable is defined');
+} else {
+    console.log('variable has not been defined');
+}
+
+//Equality opertors
+
+if(height == '23') {
+    console.log('The == operator does type coercion!');
+    // for example 23 == '23' will return true, but 23 === '23' returns false
+    // best practice is to use === 
+}
+
+/************************************
+    Coding chellange 2
+*/
+/*
+var johnGame1 = 116;
+var johnGame2 = 94;
+var johnGame3 = 123;
+
+var mikeGame1 = 116;
+var mikeGame2 = 94;
+var mikeGame3 = 123;
+
+var maryGame1 = 97;
+var maryGame2 = 04;
+var maryGame3 = 105;
+
+var johnAvg = (johnGame1 + johnGame2 + johnGame3) / 3;
+var mikeAvg = (mikeGame1 + mikeGame2 + mikeGame3) / 3;
+var maryAvg = (maryGame1 + maryGame2 + maryGame3) / 3;
+
+if(johnAvg > mikeAvg && johnAvg > maryAvg) {
+    console.log('John\'s team wins.\nMike avg = ' + mikeAvg + '\nJohn avg = ' + johnAvg + '\nMary avg = ' + maryAvg);
+} else if(mikeAvg > johnAvg && mikeAvg > maryAvg) {
+    console.log('Mike\'s team wins.\nMike avg = ' + mikeAvg + '\nJohn avg = ' + johnAvg + '\nMary avg = ' + maryAvg);
+} else if(maryAvg > johnAvg && maryAvg > mikeAvg){
+    console.log('Mary\'s team wins.\nMike avg = ' + mikeAvg + '\nJohn avg = ' + johnAvg + '\nMary avg = ' + maryAvg);
+} else if (johnAvg === mikeAvg && johnAvg > maryAvg) {
+    console.log('John = Mike = ' + johnAvg + ' , Mary = ' + maryAvg);
+} else if (johnAvg === maryAvg && johnAvg > mikeAvg) {
+    console.log('John = Mary = ' + johnAvg + ' , Mike = ' + mikeAvg);
+} else if (maryAvg === mikeAvg && maryAvg > johnAvg) {
+    console.log('Mary = Mike = ' + maryAvg + ' , John = ' + johnAvg);
+} else {
+    console.log('It\'s a draw');
+}
+*/
+/************************************
+    Functions
+*/
+
+function calculateAge(birthYear) {
+    return 2018 - birthYear;
+}
+
+var ageJohn = calculateAge(1990);
+console.log(ageJohn);
+
+function yearsUntilRetirement(year, firstName) {
+    var age = calculateAge(year);
+    var retirement = 65 - age;
+    if(retirement > 0) {
+        console.log(firstName + ' retires in ' + retirement + ' years');
+    } else {
+        console.log(firstName + ' is already retired');
+    }
+
+}
+
+yearsUntilRetirement(1990, 'John');
+yearsUntilRetirement(1948, 'Mike');
+
+/************************************
+    Function Statements and Expressions
+*/
+
+// Function Expression
+var whatDoYouDo = function(job, firstName) {
+    switch(job) {
+        case 'teacher':
+            return firstName + ' is a teacher';
+        case 'driver':
+            return firstName + ' is a driver';
+        default:
+            return firstName + ' is unemployed';
+    }
+}
+
+console.log(whatDoYouDo('teacher', 'John'));
