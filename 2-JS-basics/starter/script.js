@@ -378,6 +378,7 @@ console.log(john);
     Objects and methods
 */
 
+/*
 var john = {
     firstName: 'John',
     lastName : 'Smith',
@@ -392,4 +393,164 @@ var john = {
 
 john.calcAge();
 console.log(john);
+*/
+
+/************************************
+    Coding chellange 4
+*/
+
+/*
+var john = {
+    fullName: 'John',
+    mass: 80,
+    height: 1.8,
+    calcBmi: function() {
+        this.bmi = this.mass / (this.height * this.height);
+        return this.bmi;
+    }
+};
+
+var mark = {
+    fullName: 'Mark',
+    mass: 90,
+    height: 1.9,
+    calcBmi: function() {
+        this.bmi = this.mass / (this.height * this.height);
+        return this.bmi;
+    }
+};
+
+if(john.calcBmi() > mark.calcBmi()) {
+    console.log(john.fullName + ' has greater bmi. John = ' + john.bmi + ' , Mark = ' + mark.bmi);
+} else if (john.calcBmi() < mark.calcBmi()) {
+    console.log(mark.fullName + ' has greater bmi. John = ' + john.bmi + ' , Mark = ' + mark.bmi);
+} else {
+    console.log('BMIs are equal. John = ' + john.bmi + ' , Mark = ' + mark.bmi);
+}
+*/
+
+/************************************
+    Loops and iterations
+*/
+
+/*
+for(i = 0; i < 10; i++) {
+    console.log(i);
+}
+
+var john = ['John', 'Smith', 1990, 'teacher', false];
+
+for(i = 0; i < john.length; i++) {
+    console.log(john[i]);
+}
+
+var i = 0;
+while(i < john.length) {
+    console.log(john[i]);
+    i++;
+}
+*/
+
+// continue and break statements
+
+/*
+var john = ['John', 'Smith', 1990, 'teacher', false];
+
+for(i = 0; i < john.length; i++) {
+    if(typeof john[i] !== 'string') continue;
+    console.log(john[i]);
+}
+
+for(i = 0; i < john.length; i++) {
+    if(typeof john[i] !== 'string') break;
+    console.log(john[i]);
+}
+*/
+
+/************************************
+    Coding chellange 5
+*/
+
+var johnVisit = {
+    fullName: 'John',
+    bills: [124, 48, 268, 180, 42],
+    tips: [],
+    finalBills: [],
+    calcTips: function() {
+        
+        for(i = 0; i < this.bills.length; i++) {
+            var tip;
+            if(this.bills[i] < 50) {
+                tip = this.bills[i] * 0.2;
+            } else if (this.bills[i] >= 50 && this.bills[i] <= 200) {
+                tip = this.bills[i] * 0.15;
+            } else {
+                tip = this.bills[i] * 0.1;
+            }
+            this.tips.push(tip);
+            this.finalBills.push(tip + this.bills[i]);
+        }
+        return this.tips;
+    }
+};
+
+
+var markVisit = {
+    fullName: 'Mark',
+    bills: [77, 475, 110, 45],
+    tips: [],
+    finalBills: [],
+    calcTips: function() {
+        
+        for(i = 0; i < this.bills.length; i++) {
+       //     console.log(this.bills.length);
+            var tip;
+            if(this.bills[i] < 100) {
+                tip = this.bills[i] * 0.2;
+            } else if (this.bills[i] >= 100 && this.bills[i] <= 300) {
+                tip = this.bills[i] * 0.10;
+            } else {
+                tip = this.bills[i] * 0.25;
+            }
+            this.tips.push(tip);
+            this.finalBills.push(tip + this.bills[i]);
+        }
+        return this.tips;
+    }
+};
+
+function calcAvgTip(tips) {
+    var tipSum = 0;
+    for(i = 0; i < tips.length; i++) {
+        tipSum = tipSum + tips[i];
+    }
+    return tipSum / tips.length;
+}
+
+johnVisit.calcTips();
+markVisit.calcTips();
+
+console.log(johnVisit);
+console.log(markVisit);
+
+var johnAvgTip = calcAvgTip(johnVisit.tips);
+var markAvgTip = calcAvgTip(markVisit.tips);
+
+if(johnAvgTip > markAvgTip) {
+    console.log('John paied more in tips');
+    console.log('John = ' + johnAvgTip);
+    console.log('Mark = ' + markAvgTip);
+} else if(johnAvgTip < markAvgTip) {
+    console.log('Mark paied more in tips');
+    console.log('John = ' + johnAvgTip);
+    console.log('Mark = ' + markAvgTip);
+} else {
+    console.log('Both payed same tips');
+    console.log('John = ' + johnAvgTip);
+    console.log('Mark = ' + markAvgTip);
+}
+
+ 
+
+
 
