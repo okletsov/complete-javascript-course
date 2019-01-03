@@ -140,6 +140,7 @@ if(civilStatus === 'married') {
     The ternary operator and Switch Statements
 */
 
+/*
 var firstName = 'John';
 var age = 16;
 
@@ -175,10 +176,11 @@ switch (true) {
     default:
         console.log(firstName + ' is a man');
 }
-
+*/
 /************************************
     Truthy and Falsy values and equality operators
 */
+/*
 
 // value can be falsy if used for if/else evaluation
 // falsy values: undefined, null, 0, '', NaN (not a number)
@@ -199,6 +201,7 @@ if(height == '23') {
     // for example 23 == '23' will return true, but 23 === '23' returns false
     // best practice is to use === 
 }
+*/
 
 /************************************
     Coding chellange 2
@@ -239,7 +242,7 @@ if(johnAvg > mikeAvg && johnAvg > maryAvg) {
 /************************************
     Functions
 */
-
+/*
 function calculateAge(birthYear) {
     return 2018 - birthYear;
 }
@@ -260,12 +263,14 @@ function yearsUntilRetirement(year, firstName) {
 
 yearsUntilRetirement(1990, 'John');
 yearsUntilRetirement(1948, 'Mike');
+*/
 
 /************************************
     Function Statements and Expressions
 */
 
 // Function Expression
+/*
 var whatDoYouDo = function(job, firstName) {
     switch(job) {
         case 'teacher':
@@ -277,4 +282,114 @@ var whatDoYouDo = function(job, firstName) {
     }
 }
 
-console.log(whatDoYouDo('teacher', 'John'));
+console.log(whatDoYouDo('teacher', 'John')); 
+*/
+
+/************************************
+    Arrays
+*/
+/*
+var names = ['John', 'Mark', 'Jane'];
+var years = new Array(1990, 1969, 1948);
+
+console.log(names[0]);
+console.log(names);
+console.log(names.length);
+
+// Mutate array data
+names[1] = 'Ben';
+names[names.length] = 'Mary';
+console.log(names);
+
+// Different data types
+
+var john = ['John', 'Smith', 1990, 'teacher', false];
+john.push('blue'); // adding elements to the end of the array
+john.unshift('Mr.') // adding elements to the start of the array
+john.pop(); // removes element from the end of the array
+john.shift(); // removes element from the beginning of the array
+console.log(john);
+
+console.log(john.indexOf(1990));
+
+var isDesigner = john.indexOf('designer') === -1 ? 'John is not a designer' : 'John is a designer';
+console.log(isDesigner);
+*/
+
+/************************************
+    Coding chellange 3
+*/
+/*
+
+var bills = [124, 48, 268];
+
+function calcTip(bill) {
+    if(bill < 50) {
+        return bill * 0.2;
+    } else if(bill >= 50 && bill <= 200) {
+        return bill * 0.15;
+    } else {
+        return bill * 0.1;
+    }
+}
+
+var tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+var finalAmount = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
+
+console.log(bills);
+console.log(tips);
+console.log(finalAmount);
+*/
+
+/************************************
+    Objects and properties
+*/
+
+/*
+// Initializong an object
+var jane = new Object();
+jane.name = 'Jane';
+jane.birthYear = 1969;
+jane['lastName'] = 'Smith';
+console.log(jane);
+
+var john = {
+    firstName: 'John',
+    lastName : 'Smith',
+    birthYear: 1990,
+    family: ['Jane', 'Mark', 'Bob', 'Emily'],
+    job: 'teacher',
+    isMarried: false
+};
+
+// Accessing object properties
+console.log(john.firstName);
+console.log(john['lastName']);
+var x = 'birthYear';
+console.log(john[x]);
+
+// Mutating object properties
+john.job = 'designer';
+john['isMarried'] = true;
+console.log(john);
+*/
+
+/************************************
+    Objects and methods
+*/
+
+var john = {
+    firstName: 'John',
+    lastName : 'Smith',
+    birthYear: 1990,
+    family: ['Jane', 'Mark', 'Bob', 'Emily'],
+    job: 'teacher',
+    isMarried: false,
+    calcAge: function() {
+        this.age = 2018 - this.birthYear;
+    }
+};
+
+john.calcAge();
+console.log(john);
+
