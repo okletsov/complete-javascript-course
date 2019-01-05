@@ -8,21 +8,38 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 
 */
-var scores, roundScore, activePlayer, dice;
+var scores, roundScore, activePlayer;
 
 scores = [0, 0];
 roundScore = 0;
-activePlayer = 0; //Player 1
+activePlayer = 0; //Player 1 by default
 
-dice = Math.floor((Math.random() * 6) + 1); // generating random number
-console.log(dice);
+ document.querySelector('.dice').style.display = 'none'; // changing css style
+ 
+ document.querySelector('#score-0').textContent = 0;
+ document.querySelector('#score-1').textContent = 0;
+ document.getElementById('current-0').textContent = 0;
+ document.getElementById('current-1').textContent = 0;
 
-// accessing element in DOM and assigning a text value
-document.querySelector('#current-' + activePlayer).textContent = dice; 
+// anonymous functoin as parameter
+document.querySelector('.btn-roll').addEventListener('click', function() {
+    // 1. Random number
+    var dice = Math.floor((Math.random() * 6) + 1); // generating random number
+
+    // 2. Display the result
+    var diceDOM = document.querySelector('.dice');
+    diceDOM.style.display = 'block'; // to display an element
+    diceDOM.src = 'dice-' + dice + '.png';
+
+    // 3. Update the round score IF the rolled number was NOT 1
+
+});
+
+
+// Accessing element in DOM and assigning a text value...
+// document.querySelector('#current-' + activePlayer).textContent = dice; 
 // document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>';
 
-var x = document.querySelector('#score-0').textContent;
-console.log(x);
-
-// changing css style
-document.querySelector('.dice').style.display = 'none';
+// Accessing element's text...
+// var x = document.querySelector('#score-0').textContent;
+// console.log(x);
