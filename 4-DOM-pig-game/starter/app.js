@@ -15,7 +15,7 @@ roundScore = 0;
 activePlayer = 0; //Player 1 by default
 
  document.querySelector('.dice').style.display = 'none'; // changing css style
- 
+
  document.querySelector('#score-0').textContent = 0;
  document.querySelector('#score-1').textContent = 0;
  document.getElementById('current-0').textContent = 0;
@@ -32,6 +32,22 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     diceDOM.src = 'dice-' + dice + '.png';
 
     // 3. Update the round score IF the rolled number was NOT 1
+    if(dice !== 1) {
+        // add to score
+        roundScore += dice; // same as roundScore = roundScore + dice
+        document.querySelector('#current-' + activePlayer).textContent = roundScore;
+    } else {
+        // next player
+        document.getElementById('current-' + activePlayer).textContent = '0'; // set player's round score to 0
+        
+        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0; // change active player
+        roundScore = 0; 
+
+        document.querySelector('.player-0-panel').classList.toggle('active');  // toggle adds class 'active if it is absent and adds if it is present'
+        document.querySelector('.player-1-panel').classList.toggle('active');
+        
+        diceDOM.style.display = 'none';
+    }
 
 });
 
