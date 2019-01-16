@@ -70,7 +70,6 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         // Get points to win
         var pointsToWin;
         document.getElementById('input-0').value === "" ? pointsToWin = 100 : pointsToWin = document.getElementById('input-0').value;
-        console.log(pointsToWin);
 
         // Check if player won the game
         if(scores[activePlayer] >= pointsToWin) {
