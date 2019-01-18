@@ -132,7 +132,7 @@ console.log(heartRates);
 */
 
 // Functions returning functoins
-
+/*
 function interviewQuestion(job) {
     if(job === 'designer') {
         return function(name) {
@@ -154,3 +154,23 @@ var designerQuestion = interviewQuestion('designer');
 designerQuestion('Mark');
 
 interviewQuestion('teacher')('Jane');
+*/
+
+// IIFE
+
+function game() {
+    var score = Math.random() * 10;
+    console.log(score >= 5);
+}
+game();
+
+(function() {
+    var score = Math.random() * 10;
+    console.log(score >= 5);
+}) ();
+
+
+(function(goodLuck) {
+    var score = Math.random() * 10;
+    console.log(score >= 5 - goodLuck);
+}) (2);
