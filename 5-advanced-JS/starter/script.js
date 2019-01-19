@@ -177,7 +177,7 @@ game();
 */
 
 // Closures
-
+/*
 function retirement(retirementAge) {
     var a = ' years until retirement.';
     return function(yearOfBirth) {
@@ -194,22 +194,6 @@ retirementUS(1990);
 retirementGermany(1990);
 retirementIceland(1990);
 
-/*
-function interviewQuestion(job) {
-    if(job === 'designer') {
-        return function(name) {
-            console.log(name + ' can you explain what UX design is?');
-        }
-    } else if(job === 'teacher') {
-        return function(name) {
-            console.log('What subjet do you teach, ' + name + '?');
-        }
-    } return function(name) {
-        console.log('Hello, ' + name + ', what do you do?');
-    }
-}
-*/
-
 function interviewQuestion(job) {
     return function(name) {
         if(job === 'designer') {
@@ -225,3 +209,59 @@ function interviewQuestion(job) {
 interviewQuestion('teacher')('John');
 interviewQuestion('designer')('Mark');
 interviewQuestion('driver')('Jane');
+*/
+
+// Bind, call and apply
+
+var john = {
+    name: 'John',
+    age: 26,
+    job: 'teacher',
+    presentation: function(style, timeOfDay) {
+        if (style === 'formal') {
+            console.log('Good ' + timeOfDay + ' ladies and gentelmen! I\'m ' + this.name + '. I\'m ' + this.age + ' years old ' + this.job + '!');
+        } else if(style === 'friendly') {
+            console.log('What\'s up? I\'m ' + this.name + '. I\'m ' + this.age + ' years old ' + this.job + '! Have a nice ' + timeOfDay + '!');
+        }
+    }
+};
+
+var emily = {
+    name: 'Emily',
+    age: 30,
+    job: 'designer'
+};
+
+john.presentation('formal', 'morning');
+john.presentation.call(emily, 'friendly', 'afternoon');
+john.presentation.apply(emily, ['formal', 'evening']);
+
+var johnFriendly = john.presentation.bind(john, 'friendly');
+johnFriendly('night');
+
+var emilyFormal = john.presentation.bind(emily, 'formal');
+emilyFormal('morning');
+
+
+var years = [1990, 1965, 1937, 2005, 1998];
+
+function arrayCalc(arr, fn) { // passing function as an argument of another functoin
+    var arrRes = [];
+    for(var i = 0; i < arr.length; i++) {
+        arrRes.push(fn(arr[i]));
+    }
+    return arrRes;
+}
+
+function calcAge(yearOfBirth) {
+    return 2019 - yearOfBirth;
+}
+
+function isFullAge(limit, age) {
+    return age >= limit;
+}
+
+var ages = arrayCalc(years, calcAge);
+var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
+console.log(ages);
+console.log(fullJapan);
