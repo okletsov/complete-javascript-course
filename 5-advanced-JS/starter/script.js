@@ -132,6 +132,7 @@ console.log(heartRates);
 */
 
 // Functions returning functoins
+
 /*
 function interviewQuestion(job) {
     if(job === 'designer') {
@@ -157,6 +158,7 @@ interviewQuestion('teacher')('Jane');
 */
 
 // IIFE
+
 /*
 function game() {
     var score = Math.random() * 10;
@@ -177,6 +179,7 @@ game();
 */
 
 // Closures
+
 /*
 function retirement(retirementAge) {
     var a = ' years until retirement.';
@@ -213,6 +216,7 @@ interviewQuestion('driver')('Jane');
 
 // Bind, call and apply
 
+/*
 var john = {
     name: 'John',
     age: 26,
@@ -265,3 +269,48 @@ var ages = arrayCalc(years, calcAge);
 var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
 console.log(ages);
 console.log(fullJapan);
+*/
+
+// Coding chellange 7
+
+(function game() {
+    var Question = function(questoin, answers, correctAnswer) {
+        this.question = questoin,
+        this.answers = answers,
+        this.correctAnswer = correctAnswer
+    }
+    
+    Question.prototype.displayQuestion = function() {
+        console.log(this.question);
+        for(var i = 0; i < this.answers.length; i++) {
+            console.log(i + ':' + this.answers[i]);
+        }
+    }
+    
+    var firstQuestion = new Question('What is the best programming language in the world?', ['Java', 'JavaScript', 'Ruby'], 1);
+    var secondQuestion = new Question('How would you describe programming?', ['Fun', 'Boring', 'Tedious'], 0);
+    var thirdQuestion = new Question('What is my name?', ['Inga', 'Sofia', 'Oleksii'], 2);
+    
+    var questions = [firstQuestion, secondQuestion, thirdQuestion];
+    var answer;
+    var score = 0;
+    
+    while(answer != 'exit') {
+        var questionNumber = Math.floor((Math.random()) * 3);
+        questions[questionNumber].displayQuestion();
+        
+        answer = prompt('Please select the correct answer(just type the number). Or type exit to quit');
+        
+        if(answer == questions[questionNumber].correctAnswer) {
+            score++;
+            console.log('Correct answer!');
+            console.log('Your current score is: ' + score);
+            console.log('--------------------------------------');
+        } else if(answer == 'exit') {
+            console.log('Quiting the game');
+        } else {
+            console.log('Incorrect answer :(');
+            console.log('Your current score is: ' + score);
+        }
+    }
+}) ();
