@@ -19,9 +19,9 @@ var uiController = (function() {
     return {
         getInput: function() {
             return {
-            type: document.querySelector(domStrings.inputType).value, // Will be either "inc" or "exp"
-            description: document.querySelector(domStrings.inputDescription).value,
-            value: document.querySelector(domStrings.inputValue).value
+                type: document.querySelector(domStrings.inputType).value, // Will be either "inc" or "exp"
+                description: document.querySelector(domStrings.inputDescription).value,
+                value: document.querySelector(domStrings.inputValue).value
             };
         },
 
