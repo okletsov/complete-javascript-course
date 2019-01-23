@@ -35,12 +35,21 @@ var uiController = (function() {
 // GLOBAL APP CONTROLLER
 var controller = (function(budgetCtrl, uiCtrl) {
 
-    var dom = uiCtrl.getDomStrings();
+    var setupEventListeners = function() {
+        var dom = uiCtrl.getDomStrings();
+
+        document.querySelector(dom.inputBtn).addEventListener('click', ctrlAddItem);
+
+        document.addEventListener('keypress', function(event) { // event parameter automatically gets passed to function by browser
+            if(event.keyCode === 13 || event.which === 13) {
+                ctrlAddItem();
+            }
+        });
+    };
 
     var ctrlAddItem = function() {
         // 1. Get the input field data
         var input = uiCtrl.getInput();
-        console.log(input);
 
         // 2. Add the item to the budget controller
 
@@ -52,12 +61,12 @@ var controller = (function(budgetCtrl, uiCtrl) {
     
     };
 
-    document.querySelector(dom.inputBtn).addEventListener('click', ctrlAddItem);
-
-    document.addEventListener('keypress', function(event) { // event parameter automatically gets passed to function by browser
-        if(event.keyCode === 13 || event.which === 13) {
-            ctrlAddItem();
+    return {
+        init: function() {
+            console.log('Application has started.');
+            setupEventListeners();
         }
-    });
-
+    };    
 }) (budgetController, uiController);
+
+controller.init();
