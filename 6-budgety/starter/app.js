@@ -111,6 +111,7 @@ var uiController = (function() {
             fieldsArr = Array.prototype.slice.call(fields); // converting List to an Array
 
             fieldsArr.forEach(function(current, index, array) {
+                // index and array are optional parameter (not used here, just showing we can access them here)
                 current.value = "";
             });
 
