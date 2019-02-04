@@ -154,6 +154,23 @@ var uiController = (function() {
         container: '.container',
         expensesPercLabel: '.item__percentage'
     };
+
+    var formatNumber = function(num, type) {
+        var numSplit, int, dec; 
+        
+        num = Math.abs(num);
+        num = num.toFixed(2);
+
+        numSplit = num.split('.');
+        int = numSplit[0];
+        if(int.length > 3) {
+            int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3);
+        }
+
+        dec = numSplit[1];
+
+        return (type === 'exp' ? '-' : '+') + ' ' + int + '.' + dec;
+    };
     
     return {
         getInput: function() {
@@ -182,7 +199,7 @@ var uiController = (function() {
 
             newHtml = html.replace('%id%', obj.id);
             newHtml = newHtml.replace('%description%', obj.description);
-            newHtml = newHtml.replace('%value%', obj.value);
+            newHtml = newHtml.replace('%value%', formatNumber(obj.value, type));
 
             // Insert HTML into the DOM
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
@@ -208,9 +225,13 @@ var uiController = (function() {
         },
 
         displayBudget: function(obj) {
-            document.querySelector(domStrings.budgetLabel).textContent = obj.budget;
-            document.querySelector(domStrings.incomeLabel).textContent = obj.totalInc;
-            document.querySelector(domStrings.expenseLabel).textContent = obj.totalExp;
+            var type;
+
+            obj.budget > 0 ? type = 'inc' : type = 'exp';
+
+            document.querySelector(domStrings.budgetLabel).textContent = formatNumber(obj.budget, type);
+            document.querySelector(domStrings.incomeLabel).textContent = formatNumber(obj.totalInc, 'inc');
+            document.querySelector(domStrings.expenseLabel).textContent = formatNumber(obj.totalExp, 'exp');
 
             if(obj.percentage > 0) {
                 document.querySelector(domStrings.percentageLabel).textContent = obj.percentage + '%';
@@ -235,23 +256,6 @@ var uiController = (function() {
                     cur.textContent = '---';
                 }
             });
-        },
-
-        formatNumber: function(num, type, sign) {
-            var numSplit, int, dec; 
-            
-            num = Math.abs(num);
-            num = num.toFixed(2);
-
-            numSplit = num.split('.');
-            int = numSplit[0];
-            if(int.length > 3) {
-                int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3);
-            }
-
-            dec = numSplit[1];
-
-            return (type === 'exp' ? '-' : '+') + ' ' + int + dec;
         },
 
         getDomStrings: function() {
