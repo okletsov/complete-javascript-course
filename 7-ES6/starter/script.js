@@ -6,6 +6,7 @@
  */
 
 // ES5
+/*
 var name5 = 'Jane Smith';
 var age = 23;
 name5 = 'Jane Miller';
@@ -66,3 +67,25 @@ for(let i = 0; i < 5; i++) {
 }
 
 console.log(i);
+*/
+
+/////////////////////////////////
+// Lecture: Blocks and IIFEs
+
+//ES6
+
+{
+    const a = 1;
+    let b = 2;
+    var c = 3;
+}
+
+// console.log(a + b); // this will not work because above is IIFE
+console.log(c);
+
+// ES5
+(function() {
+    var c = 5;
+}) ();
+
+// console.log(c); // this will not work because above is IIFE
