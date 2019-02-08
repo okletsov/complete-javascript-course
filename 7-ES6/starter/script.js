@@ -156,19 +156,50 @@ var box5 = {
     }
 };
 
-box5.clickMe();
+//box5.clickMe();
 
 // ES6
+// example 1
 const box6 = {
     color: 'green',
     position: 1,
     clickMe: function() {
-        var self = this;
-        document.querySelector('.green').addEventListener('click') => function() {
-            var str = 'This is box ' + self.position + ' and it is ' + self.color;
+        document.querySelector('.green').addEventListener('click', () => { // arrow function here shares "this" keyword of its surrounding (box6 object)
+            var str = 'This is box ' + this.position + ' and it is ' + this.color;
             alert(str);
         });
     }
 };
 
-box6.clickMe();
+//box6.clickMe();
+
+// example 2
+const box66 = {
+    color: 'green',
+    position: 1,
+    clickMe: () => {
+        document.querySelector('.green').addEventListener('click', () => { // arrow function here shares "this" keyword of its surrounding (box6 object), but it does not work because clickMe property also uses arrow funciton that in turn shares "this" keyword of its surrounding (global scope)
+            var str = 'This is box ' + this.position + ' and it is ' + this.color;
+            alert(str);
+        });
+    }
+};
+
+// box66.clickMe();
+
+// example 3
+    //ES5
+function Person(name) {
+    this.name = name;
+}
+
+Person.prototype.myFriends5 = function(friends) {
+    
+    var arr = friends.map(function(cur) {
+        return this.name + ' is friends with ' + cur;
+    }.bind(this));
+    console.log(arr);
+}
+
+var friends = ['Oleksii', 'Inga'];
+new Person('Sofia').myFriends5(friends);
