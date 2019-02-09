@@ -203,3 +203,16 @@ Person.prototype.myFriends5 = function(friends) {
 
 var friends = ['Oleksii', 'Inga'];
 new Person('Sofia').myFriends5(friends);
+
+    //ES6
+function Person(name) {
+    this.name = name;
+}
+    
+Person.prototype.myFriends6 = function(friends) {
+        
+    var arr = friends.map(cur => `${this.name} is friends with ${cur}`);
+    console.log(arr);
+}
+
+new Person('Alexander').myFriends6(friends);
