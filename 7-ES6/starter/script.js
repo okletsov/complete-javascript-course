@@ -142,6 +142,7 @@ console.log(ages6);
 
 /////////////////////////////////
 // Lecture: Arrow Functions 2
+/*
 
 // ES5
 var box5 = {
@@ -216,3 +217,39 @@ Person.prototype.myFriends6 = function(friends) {
 }
 
 new Person('Alexander').myFriends6(friends);
+*/
+
+/////////////////////////////////
+// Lecture: Destructuring
+
+// ES5
+
+var john5 = ['John', 26];
+var name5 = john5[0];
+var age5 = john5[1];
+
+// ES6
+
+const [name6, age6] = ['John', 26];
+console.log(name6, age6);
+
+const obj = {
+    firstName: 'John',
+    lastName: 'Smith'
+}
+
+const {firstName, lastName} = obj;
+console.log(firstName, lastName);
+
+const {firstName: a, lastName: b} = obj;
+console.log(a, b);
+
+// returning multiple values from a function
+
+function calcAgeRetirement(year) {
+    const age = new Date().getFullYear() - year;
+    return [age, 65 - age];
+}
+
+const [age, yearsToRetire] = calcAgeRetirement(1988);
+console.log(age, yearsToRetire);
