@@ -258,7 +258,7 @@ console.log(age, yearsToRetire);
 
 /////////////////////////////////
 // Lecture: Arrays
-
+/*
 const boxes = document.querySelectorAll('.box');
 
 //ES5
@@ -272,7 +272,7 @@ const boxesArr6 = Array.from(boxes);
 boxesArr6.forEach(cur => cur.style.backgroundColor = 'dodgerblue');
 
 // ES5
-/*
+
 for(var i = 0; i < boxesArr5.length; i++) {
     
     if(boxesArr5[i].className === 'box blue') {
@@ -281,7 +281,7 @@ for(var i = 0; i < boxesArr5.length; i++) {
     
     boxesArr5[i].textContent = 'I changed to blue!';
 }
-*/
+
 
 //ES6
 for (const cur of boxesArr6) {
@@ -304,3 +304,37 @@ console.log(ages[full.indexOf(true)]);
 //ES6
 console.log(ages.findIndex(cur => cur >= 18));
 console.log(ages.find(cur => cur >=18));
+*/
+
+/////////////////////////////////
+// Lecture: Spread operator
+
+function addFourAges(a, b, c, d) {
+    return a + b + c + d;
+}
+
+var sum1 = addFourAges(18, 30, 12, 21);
+console.log(sum1);
+
+// ES5
+var ages = [18, 30, 12, 21];
+var sum2 = addFourAges.apply(null, ages);
+console.log(sum2);
+
+//ES6
+// can be used when need to call a functoin and pass values of array as arguments
+const sum3 = addFourAges(...ages);
+console.log(sum3); 
+
+// can be used to join two arrays
+const smithFamily = ['John', 'Jane', 'Mark'];
+const millerFamily = ['Mary', 'Bob', 'Ann'];
+const bigFamily = [...smithFamily, 'Lily', ...millerFamily];
+console.log(bigFamily);
+
+// can be used not only for arrays, but for example for node lists
+const h = document.querySelector('h1');
+const boxes = document.querySelectorAll('.box');
+const all = [h, ...boxes];
+
+Array.from(all).forEach(cur => cur.style.color = 'purple');
