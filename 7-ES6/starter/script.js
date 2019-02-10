@@ -307,8 +307,8 @@ console.log(ages.find(cur => cur >=18));
 */
 
 /////////////////////////////////
-// Lecture: Spread operator
-
+// Lecture: Spread operator - transforms an array into single values
+/*
 function addFourAges(a, b, c, d) {
     return a + b + c + d;
 }
@@ -338,3 +338,58 @@ const boxes = document.querySelectorAll('.box');
 const all = [h, ...boxes];
 
 Array.from(all).forEach(cur => cur.style.color = 'purple');
+*/
+
+/////////////////////////////////
+// Lecture: Rest parameters - transforms signle values in an array
+// can be used to create a function that receives an arbitrary number of arguments
+// Rest is used in a function declaratoin
+// Spread is used in a function call
+
+//ES5
+/*
+function isFullAge5() {
+    //console.log(arguments);
+    var argsArr = Array.prototype.slice.call(arguments);
+
+    argsArr.forEach(function(cur) {
+        console.log((2016 - cur) >= 18);
+    });
+}
+
+isFullAge5(1990, 1999, 1965);
+isFullAge5(1990, 1999, 1965, 2016, 1987);
+
+//ES6
+function isFullAge6(...years) {
+    console.log(years);
+    years.forEach(cur => console.log((2016 - cur) >= 18));
+}
+
+isFullAge6(1990, 1999, 1965);
+*/
+
+// Example 2: when function always has 1 static parameter + random number of parameters
+// ES5
+function isFullAge5(limit) {
+    
+    var argsArr = Array.prototype.slice.call(arguments, 1);
+    
+    console.log(arguments);
+    console.log(argsArr);
+
+    argsArr.forEach(function(cur) {
+        console.log((2016 - cur) >= limit);
+    });
+}
+
+isFullAge5(21, 1990, 1999, 1965);
+isFullAge5(21, 1990, 1999, 1965, 2016, 1987);
+
+//ES6
+function isFullAge6(limit, ...years) {
+    console.log(years);
+    years.forEach(cur => console.log((2016 - cur) >= limit));
+}
+
+isFullAge6(21, 1990, 1999, 1965);
