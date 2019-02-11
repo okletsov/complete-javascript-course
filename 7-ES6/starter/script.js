@@ -414,7 +414,7 @@ function SmithPerson(firstName, yearOfBirth, lastName, nationality) {
     this.nationality = nationality;
 }
 */
-
+/*
 //ES6
 function SmithPerson(firstName, yearOfBirth, lastName = 'Smith', nationality = 'american') {
     this.firstName = firstName;
@@ -426,3 +426,46 @@ function SmithPerson(firstName, yearOfBirth, lastName = 'Smith', nationality = '
 var john = new SmithPerson('John', 1990);
 var emily = new SmithPerson('Emily', 1983, 'Diaz', 'spanish');
 
+*/
+
+/////////////////////////////////
+// Lecture: Maps
+
+// Note: maps are similar to objects. The difference is that in object we use only strings as keys. In maps we can use strings, numbers and even objects and functions as keys
+
+const question = new Map();
+
+// Filling a map with data
+question.set('question', 'What is the official name of the latest JavaScript version?');
+question.set(1, 'ES5');
+question.set(2, 'ES6');
+question.set(3, 'ES2015');
+question.set(4, 'ES7');
+question.set('correct', 3);
+question.set(true, 'Correct answer');
+question.set(false, 'Wrong, please try again');
+
+// Retreiving data from a map
+console.log(question.get('question'));
+console.log(question.size);
+
+// Deleting data from a map
+if(question.has(4)) {
+    // question.delete(4);
+    console.log('Answer 4 is here')
+}
+
+// question.clear(); // delete everything
+
+// Looping over a map with for each and for of
+question.forEach((value, key) => console.log(`This is: ${key}, and it is set to: ${value}`));
+
+for(let [key, value] of question.entries()) {
+    if(typeof(key) === 'number') {
+        console.log(`Answer ${key}: ${value}`);
+    }
+}
+
+const ans = parseInt(prompt('Write the correct answer'));
+
+console.log(question.get(ans === question.get('correct')));
