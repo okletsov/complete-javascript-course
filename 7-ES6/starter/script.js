@@ -342,6 +342,8 @@ Array.from(all).forEach(cur => cur.style.color = 'purple');
 
 /////////////////////////////////
 // Lecture: Rest parameters - transforms signle values in an array
+
+/*
 // can be used to create a function that receives an arbitrary number of arguments
 // Rest is used in a function declaratoin
 // Spread is used in a function call
@@ -369,6 +371,7 @@ function isFullAge6(...years) {
 isFullAge6(1990, 1999, 1965);
 */
 
+/*
 // Example 2: when function always has 1 static parameter + random number of parameters
 // ES5
 function isFullAge5(limit) {
@@ -393,3 +396,33 @@ function isFullAge6(limit, ...years) {
 }
 
 isFullAge6(21, 1990, 1999, 1965);
+*/
+
+/////////////////////////////////
+// Lecture: Default parameters
+
+// ES5
+/*
+function SmithPerson(firstName, yearOfBirth, lastName, nationality) {
+    
+    lastName === undefined ? lastName = 'Smith' : lastName = lastName;
+    nationality === undefined ? nationality = 'american' : lastName = lastName;
+    
+    this.firstName = firstName;
+    this.yearOfBirth = yearOfBirth;
+    this.lastName = lastName;
+    this.nationality = nationality;
+}
+*/
+
+//ES6
+function SmithPerson(firstName, yearOfBirth, lastName = 'Smith', nationality = 'american') {
+    this.firstName = firstName;
+    this.yearOfBirth = yearOfBirth;
+    this.lastName = lastName;
+    this.nationality = nationality;
+}
+
+var john = new SmithPerson('John', 1990);
+var emily = new SmithPerson('Emily', 1983, 'Diaz', 'spanish');
+
