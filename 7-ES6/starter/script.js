@@ -516,7 +516,7 @@ Person6.greeting();
 
 /////////////////////////////////
 // Lecture: Classes with Subclasses
-
+/*
 var Person5 = function(name, yearOfBirth, job) {
     this.name = name;
     this.yearOfBirth = yearOfBirth;
@@ -575,3 +575,104 @@ class Athlete6 extends Person6 {
 const johnAthlete6 = new Athlete6('John', 1990, 'runner', 4, 15);
 johnAthlete6.calculateAge()
 johnAthlete6.wonMedal();
+*/
+
+/////////////////////////////////
+// Coding chellange 8
+
+class TownElement {
+    constructor(name, buildYear) {
+        this.name = name;
+        this.buildYear = buildYear;
+    }
+
+    get age() {
+        return this.calcAge();
+    }
+
+    calcAge() {
+        return new Date().getFullYear() - this.buildYear; 
+    }
+}
+
+class Park extends TownElement {
+    constructor(name, buildYear, trees, area) {
+        super(name, buildYear);
+        this.trees = trees;
+        this.area = area;
+    }
+
+    get density() {
+        return this.calcDensity();
+    }
+
+    calcDensity() {
+        return this.trees / this.area;
+    }
+}
+
+class Street extends TownElement {
+    constructor(name, buildYear, length) {
+        super(name, buildYear);
+        this.length = length;
+    }
+
+    get classification() {
+        return this.calcClassification();
+    }
+
+    calcClassification() {
+        if(this.length < 1) {
+            return 'tiny';
+        } else if(this.length >= 1 && this.length < 3) {
+            return 'small';
+        } else if((this.length >= 3 && this.length < 5) || this.length === undefined) {
+            return 'normal';
+        } else if(this.length >= 5 && this.length < 10) {
+            return 'big';
+        } else {
+            return 'huge';
+        }
+    }
+}
+
+const parks = [
+    new Park('Green Park', 2000, 500, 2),
+    new Park('Natiaonal Park', 2001, 800, 6),
+    new Park('Oak Park', 2015, 1100, 4)
+];
+
+
+const streets = [
+    new Street('Ocean Avenue', 2008, 100),
+    new Street('Evergreen', 2010, 3),
+    new Street('Sunset Boulevard', 2009, 7),
+    new Street('4th Street', 2012)
+];
+
+parksAge = function(parks) {
+    let age = 0;
+    parks.forEach(el => age += el.age);
+    return Math.round(age / parks.length);  
+};
+
+park1000 = function(parks) {
+    name = 'No parks';
+    parks.forEach(el => {
+        if(el.trees >= 1000) {
+            name = el.name;
+        }
+    })
+    return name;
+}
+
+streetsLength = function(streets) {
+    length = 0;
+    streets.forEach(cur => {
+        if(cur.length !== undefined) {
+            length += cur.length;
+        } 
+    })
+    return length;
+}
+
