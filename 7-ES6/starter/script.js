@@ -607,7 +607,7 @@ class Park extends TownElement {
     }
 
     calcDensity() {
-        return this.trees / this.area;
+        return Math.round(this.trees / this.area);
     }
 }
 
@@ -650,29 +650,43 @@ const streets = [
     new Street('4th Street', 2012)
 ];
 
-parksAge = function(parks) {
-    let age = 0;
-    parks.forEach(el => age += el.age);
-    return Math.round(age / parks.length);  
-};
+parksData = function(parks) {
+    let totAge = 0, name;
 
-park1000 = function(parks) {
-    name = 'No parks';
-    parks.forEach(el => {
-        if(el.trees >= 1000) {
-            name = el.name;
-        }
+    parks.forEach(cur => {
+        totAge += cur.age;
+        cur.trees >= 100 ? name = cur.name : name = 'None'; 
     })
-    return name;
+    return [totAge, name];
 }
 
-streetsLength = function(streets) {
-    length = 0;
+calcStreetsData = function(streets) {
+    let totLength = 0, count = 0;
+    
     streets.forEach(cur => {
         if(cur.length !== undefined) {
-            length += cur.length;
-        } 
+            totLength += cur.length;
+            count++;
+        }
     })
-    return length;
+    return [totLength, Math.round(totLength / count)];
 }
 
+const [totAge, park1000] = parksData(parks);
+const [totLength, avgLength] = calcStreetsData(streets);
+
+parksReport = function(parks) {
+    console.log('----PARKS REPORT----');
+    console.log(`Our ${parks.length} parks have an average age of ${totAge} years`);
+    parks.forEach(cur => console.log(`${cur.name} has a tree density of ${cur.density} per ${cur.area} sq km`))
+    console.log(`${park1000} has more than 1000 trees`);
+}
+
+streetsReport = function(streets) {
+    console.log('----STREETS REPORT----');
+    console.log(`Our ${streets.length} streets have a total length of ${totLength} km, with an average of ${avgLength} km`);
+    streets.forEach(cur => console.log(`${cur.name}, built in ${cur.buildYear}, is a ${cur.classification} street`))
+}   
+
+parksReport(parks);
+streetsReport(streets);
