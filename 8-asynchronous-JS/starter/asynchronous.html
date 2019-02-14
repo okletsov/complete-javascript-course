@@ -25,6 +25,10 @@
         first();
         */
 
+        /////////////////////////////////
+        // Async javascript old way (callback hell)
+
+        /*
         function getRecipie() {
             setTimeout(() => {
                 const recipieID = [523, 883, 432, 974];
@@ -49,6 +53,55 @@
         }
         
         getRecipie();
+        */
+
+        const getIDs = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve([523, 883, 432, 974]);
+            }, 1500);
+        });
+
+        const getRecipie = recID => {
+            return new Promise((resolve, reject) => {
+                setTimeout((id) => {
+                    const recipie = {
+                        title: 'Fresh tomato pasta',
+                        publisher: 'Jonas'
+                    };
+                    resolve(`${id}: ${recipie.title}`);
+                }, 1500, recID);
+            }); 
+        };
+
+        const getRelated = publisher => {
+            return new Promise((resolve, reject) => {
+                setTimeout(pub => {
+                    const recipie2 = {
+                            title: 'Italian Pizza',
+                            publisher: 'Jonas'
+                        };
+                        resolve(`${recipie2.title} by ${pub}`);
+                }, 1500, publisher);
+            })
+        };
+
+        getIDs
+        .then(IDs => {
+            console.log(IDs);
+            return getRecipie(IDs[2]);
+        })
+        .then(recipie => {
+            console.log(recipie);
+            return getRelated('Jonas');
+        })
+        .then(recipie => {
+            console.log(recipie);
+        })
+        .catch(error => {
+            console.log(`Error!: ${error}`);
+        });
+
+        
     </script>
 </body>
 </html>
