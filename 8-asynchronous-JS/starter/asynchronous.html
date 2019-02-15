@@ -55,6 +55,10 @@
         getRecipie();
         */
 
+        /////////////////////////////////
+        // Promises
+
+        
         const getIDs = new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve([523, 883, 432, 974]);
@@ -85,6 +89,9 @@
             })
         };
 
+        // Consuming promises old way
+
+        /*
         getIDs
         .then(IDs => {
             console.log(IDs);
@@ -92,7 +99,7 @@
         })
         .then(recipie => {
             console.log(recipie);
-            return getRelated('Jonas');
+            return getRelated('Jonas Lastname');
         })
         .then(recipie => {
             console.log(recipie);
@@ -100,6 +107,23 @@
         .catch(error => {
             console.log(`Error!: ${error}`);
         });
+        */
+
+        // Consuming promises Async Await
+
+        async function getRecipiesAW() { // always returns a promise
+            const IDs = await getIDs;
+            console.log(IDs);
+
+            const recipie = await getRecipie(IDs[2]);
+            console.log(recipie);
+
+            const related = await getRelated('Jonas Lastname');
+            console.log(related);
+
+            return recipie;
+        }
+        getRecipiesAW().then(result => console.log(`${result} is the best ever!`));
 
         
     </script>
