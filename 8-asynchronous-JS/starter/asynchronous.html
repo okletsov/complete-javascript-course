@@ -58,7 +58,7 @@
         /////////////////////////////////
         // Promises
 
-        
+        /*
         const getIDs = new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve([523, 883, 432, 974]);
@@ -88,6 +88,7 @@
                 }, 1500, publisher);
             })
         };
+        */
 
         // Consuming promises old way
 
@@ -111,6 +112,7 @@
 
         // Consuming promises Async Await
 
+        /*
         async function getRecipiesAW() { // always returns a promise
             const IDs = await getIDs;
             console.log(IDs);
@@ -124,8 +126,30 @@
             return recipie;
         }
         getRecipiesAW().then(result => console.log(`${result} is the best ever!`));
+        */
 
-        
+        /////////////////////////////////
+        // Making AJAX calls with Fetch and Promises
+
+        function getWeather(woeid) {
+            fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}/`)
+            .then(result => {
+                console.log(result);
+                return result.json()
+            })
+            .then(data => {
+                console.log(data);
+                const today = data.consolidated_weather[0];
+                console.log(`Temperatures in ${data.title} are between ${today.max_temp} and ${today.min_temp} today`);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        }
+        getWeather(2487956);
+        getWeather(44418);
+        // getWeather(444185465465465465465); // to trigger error
+                
     </script>
 </body>
 </html>
