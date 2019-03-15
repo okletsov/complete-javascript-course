@@ -36,3 +36,12 @@ elements.searchForm.addEventListener('submit', e => {
     e.preventDefault();
     controlSearch();
 })
+
+elements.searchResPages.addEventListener('click', e => {
+    const btn = e.target.closest('.btn-inline');
+    if(btn) {
+        const goToPage = parseInt(btn.dataset.goto, 10); // when we prefix an elenemt attribut with 'data', we can read the attribute value via dataset property
+        searchView.clearResults();
+        searchView.renderResults(state.search.result, goToPage);
+    }
+});
